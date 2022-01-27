@@ -10,18 +10,28 @@ namespace LogFile
     {
         private LogInterface Logger;
 
-        private LogTypeEnume LogType {
-            get { return LogTypeEnume.json; }
-            set { LogType = value; }
-        }
-
-        private string path { get; set; }
-
-        private string contnet { get; set; }
+        private LogTypeEnume LogType;
 
         public Log(string logType)
         {
+            initLogType(logType);
             initLog(logType);
+        }
+
+        private void initLogType(string logType)
+        {
+            switch(logType)
+            {
+                case "json":
+                    LogType = LogTypeEnume.json;
+                    break;
+                case "xml":
+                    LogType = LogTypeEnume.xml;
+                    break;
+                case "txt":
+                    LogType = LogTypeEnume.txt;
+                    break;
+            }
         }
 
         public void initLog(string logType)
@@ -44,18 +54,16 @@ namespace LogFile
             }
         }
 
-        public void create(string filePath, string contnet)
+        public void create(string path, string content)
         {
-            this.path = filePath;
-            this.contnet = contnet;
-
-            Logger.set(this.path, this.contnet);
+            Logger.set(path, content);
+            Logger.check();
             Logger.save();
         }
 
         public string get()
         {
-            return this.contnet;
+            return this.Logger.get();
         }
 
         public void show()

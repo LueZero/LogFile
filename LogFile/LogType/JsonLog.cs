@@ -11,17 +11,17 @@ namespace LogFile.LogType
 {
     internal class JsonLog : LogType<JObject>, LogInterface
     {
-        public void set(string path, string text)
+        public void set(string path, string content)
         {
             this.path = path;
-            this.text = text;
+            this.content = content;
         }
 
         public bool check()
         {
             try
             {
-                this.log = JObject.Parse(this.text);
+                this.log = JObject.Parse(this.content);
 
                 return true;
             }
@@ -31,6 +31,11 @@ namespace LogFile.LogType
 
                 return false;
             }
+        }
+
+        public string get()
+        {
+            return this.log.ToString();
         }
 
         public void save()

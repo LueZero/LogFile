@@ -17,10 +17,10 @@ namespace LogFileTest
         {
             //Arrange
             var jsonLog = new Log("json");
-            var actual = "123";
+            var actual = "{}";
 
             //Act
-            jsonLog.create("test", actual);
+            jsonLog.create("D:\\test.xml", actual);
 
             //Assert
             Assert.That(actual, Is.EqualTo(jsonLog.get()));

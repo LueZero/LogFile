@@ -10,7 +10,7 @@ namespace LogFile.LogType
     {
         protected string path;
 
-        protected string text;
+        protected string content;
 
         protected string error;
 

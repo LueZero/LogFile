@@ -12,17 +12,24 @@ namespace LogFile.LogType
         public void set(string path, string content)
         {
             this.path = path;
-            this.text = content;
+            this.content = content;
         }
 
         public bool check()
         {
+            String content = this.content;
+            this.log = content;
             return true;
         }
 
         public void save()
         {
 
+        }
+
+        public string get()
+        {
+            return this.log.ToString();
         }
 
         public void delete()

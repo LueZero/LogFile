@@ -14,6 +14,8 @@ namespace LogFile.Interfaces
 
         public void save();
 
+        public string get();
+
         public void delete();
     }
 }
