@@ -12,7 +12,7 @@ namespace LogFile
         static void Main(string[] args)
         {
             var json = new Log("json");
-            json.create("D:\\test.json", "{}");
+            json.create("D:\\", "test", "{}");
             Console.WriteLine(json.get());
 
             var doc = new XmlDocument();
@@ -37,9 +37,12 @@ namespace LogFile
             element2.AppendChild(element4);
 
             var xml = new Log("xml");
-            xml.create("D:\\test.xml", doc.OuterXml);
-
+            xml.create("D:\\", "test", doc.OuterXml);
             Console.WriteLine(xml.get());
+
+            var txt = new Log("txt");
+            txt.create("D:\\", "test", "123");
+            Console.WriteLine(txt.get());
         }
     }
 }

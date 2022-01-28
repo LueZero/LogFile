@@ -10,9 +10,10 @@ namespace LogFile.LogType
 {
     internal class XmlLog : LogType<XmlDocument>, LogInterface
     {
-        public void set(string path, string content)
+        public void set(string path, string fileName, string content)
         {
             this.path = path;
+            this.fileName = fileName;
             this.content = content;
         }
 
@@ -41,13 +42,20 @@ namespace LogFile.LogType
 
         public void save()
         {
-            try
+            if (this.check())
             {
-                this.log.Save(this.path);
+                try
+                {
+                    this.log.Save(path+fileName+".xml");
+                }
+                catch (XmlException ex)
+                {
+                    this.error = ex.Message;
+                    logException();
+                }
             }
-            catch (XmlException ex)
+            else
             {
-                this.error = ex.Message;
                 logException();
             }
         }

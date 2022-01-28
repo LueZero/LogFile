@@ -54,21 +54,15 @@ namespace LogFile
             }
         }
 
-        public void create(string path, string content)
+        public void create(string path, string fileName, string content)
         {
-            Logger.set(path, content);
-            Logger.check();
+            Logger.set(path, fileName, content);
             Logger.save();
         }
 
         public string get()
         {
             return this.Logger.get();
-        }
-
-        public void show()
-        {
-
         }
 
         public void delete()

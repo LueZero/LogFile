@@ -20,7 +20,7 @@ namespace LogFileTest
             var actual = "{}";
 
             //Act
-            jsonLog.create("D:\\test.xml", actual);
+            jsonLog.create("D:\\", "test", actual);
 
             //Assert
             Assert.That(actual, Is.EqualTo(jsonLog.get()));

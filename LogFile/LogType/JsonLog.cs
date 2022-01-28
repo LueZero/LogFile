@@ -11,9 +11,10 @@ namespace LogFile.LogType
 {
     internal class JsonLog : LogType<JObject>, LogInterface
     {
-        public void set(string path, string content)
+        public void set(string path,string fileName, string content)
         {
             this.path = path;
+            this.fileName = fileName;
             this.content = content;
         }
 
@@ -44,7 +45,7 @@ namespace LogFile.LogType
             {
                 try
                 {
-                    using (FileStream fs = File.Create(path))
+                    using (FileStream fs = File.Create(path+fileName+".json"))
                     {
                         byte[] info = new UTF8Encoding(true).GetBytes(this.log.ToString());
                        
@@ -61,11 +62,6 @@ namespace LogFile.LogType
             {
                 logException();
             }
-        }
-
-        public void delete()
-        {
-
         }
     }
 }
