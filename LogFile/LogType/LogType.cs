@@ -8,6 +8,8 @@ namespace LogFile.LogType
 {
     class LogType<T>
     {
+        protected string fullFilePath;
+
         protected string path;
 
         protected string fileName;

@@ -65,8 +65,9 @@ namespace LogFile
             return this.Logger.get();
         }
 
-        public void delete()
+        public void delete(string path, string fileName)
         {
+            Logger.set(path, fileName);
             Logger.delete();
         }
     }

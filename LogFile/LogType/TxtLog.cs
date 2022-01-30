@@ -10,11 +10,12 @@ namespace LogFile.LogType
 {
     internal class TxtLog :  LogType<String>, LogInterface
     {
-        public void set(string path, string fileName, string content)
+        public void set(string path, string fileName, string content = null)
         {
             this.path = path;
             this.fileName = fileName;
             this.content = content;
+            this.fullFilePath = path + fileName + ".txt";
         }
 
         public bool check()
@@ -40,7 +41,7 @@ namespace LogFile.LogType
             {
                 try
                 {
-                    using (FileStream fs = File.Create(path+fileName+".txt"))
+                    using (FileStream fs = File.Create(this.fullFilePath))
                     {
                         byte[] info = new UTF8Encoding(true).GetBytes(this.log.ToString());
 
@@ -66,7 +67,15 @@ namespace LogFile.LogType
 
         public void delete()
         {
+            bool result = File.Exists(this.fullFilePath);
 
+            if (!result)
+            {
+                this.error = this.fullFilePath + " Not Found";
+                logException();
+            }
+
+            File.Delete(this.fullFilePath);
         }
     }
 }

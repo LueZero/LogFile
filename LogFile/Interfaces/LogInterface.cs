@@ -8,7 +8,7 @@ namespace LogFile.Interfaces
 {
     public interface LogInterface
     {
-        public void set(string path, string fileName, string content);
+        public void set(string path, string fileName, string content = null);
 
         public bool check();
 
