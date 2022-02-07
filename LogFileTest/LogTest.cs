@@ -13,17 +13,17 @@ namespace LogFileTest
         }
 
         [Test]
-        public void TestOne()
+        public void LogCreateLogTest()
         {
             //Arrange
             var jsonLog = new Log("json");
             var actual = "{}";
 
             //Act
-            jsonLog.create("D:\\", "test", actual);
+            jsonLog.saveLog("D:\\", "test", actual);
 
             //Assert
-            Assert.That(actual, Is.EqualTo(jsonLog.get()));
+            Assert.That(actual, Is.EqualTo(jsonLog.getLogString()));
         }
     }
 }

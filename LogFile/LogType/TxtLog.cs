@@ -77,5 +77,10 @@ namespace LogFile.LogType
 
             File.Delete(this.fullFilePath);
         }
+
+        public void read(string fullFilePath)
+        {
+
+        }
     }
 }

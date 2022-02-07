@@ -15,7 +15,7 @@ namespace LogFile
         public Log(string logType)
         {
             initLogType(logType);
-            initLog(logType);
+            initLog();
         }
 
         private void initLogType(string logType)
@@ -34,33 +34,37 @@ namespace LogFile
             }
         }
 
-        public void initLog(string logType)
+        public void initLog()
         {
-            if (LogType == LogTypeEnume.json)
+            switch(LogType)
             {
-                Logger = new JsonLog();
-            } 
-            else if(LogType == LogTypeEnume.xml) 
-            {
-                Logger = new XmlLog();
-            } 
-            else if (LogType == LogTypeEnume.txt) 
-            {
-                Logger = new TxtLog();
-            }
-            else
-            {
-                Logger = null;
+                case LogTypeEnume.json:
+                    Logger = new JsonLog();
+                    break;
+                case LogTypeEnume.xml:
+                    Logger = new XmlLog();
+                    break;
+                case LogTypeEnume.txt:
+                    Logger = new TxtLog();
+                    break;
+                default:
+                    Logger = null;
+                    break;
             }
         }
 
-        public void create(string path, string fileName, string content)
+        public LogInterface useLogObject()
+        {
+            return this.Logger;
+        }
+
+        public void saveLog(string path, string fileName, string content)
         {
             Logger.set(path, fileName, content);
             Logger.save();
         }
 
-        public string get()
+        public string getLogString()
         {
             return this.Logger.get();
         }
