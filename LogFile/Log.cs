@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using LogFile.Interfaces;
-using LogFile.LogType;
 
 namespace LogFile
 {
     public class Log
     {
-        private LogInterface Logger;
+        internal LogInterface Logger;
 
         private LogTypeEnume LogType;
 

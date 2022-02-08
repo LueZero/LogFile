@@ -1,59 +1,43 @@
 ﻿using LogFile.Interfaces;
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
+using System.Xml;
 
-namespace LogFile.LogType
+namespace LogFile
 {
-    internal class JsonLog : LogType<JObject>, LogInterface
+    internal class XmlLog : Logger<XmlDocument>, LogInterface
     {
-        public void set(string path,string fileName, string content = null)
-        {
-            this.path = path;
-            this.fileName = fileName;
-            this.content = content;
-            this.fullFilePath = path + fileName + ".json";
-        }
-
         public bool check()
         {
             try
             {
-                this.log = JObject.Parse(this.content);
+                this.log = new XmlDocument();
+
+                this.log.LoadXml(this.content);
 
                 return true;
             }
-            catch (Newtonsoft.Json.JsonReaderException ex)
+            catch (XmlException ex)
             {
                 this.error = ex.Message;
-
+          
                 return false;
             }
         }
 
-        public string get()
-        {
-            return this.log.ToString();
-        }
-
         public void save()
         {
-            if(this.check())
+            if (this.check())
             {
                 try
                 {
-                    using (FileStream fs = File.Create(this.fullFilePath))
-                    {
-                        byte[] info = new UTF8Encoding(true).GetBytes(this.log.ToString());
-                       
-                        fs.Write(info, 0, info.Length);
-                    }
+                    this.log.Save(this.fullFilePath);
                 }
-                catch (Exception ex)
+                catch (XmlException ex)
                 {
                     this.error = ex.Message;
                     logException();
@@ -80,7 +64,7 @@ namespace LogFile.LogType
 
         public void read(string fullFilePath)
         {
-
+         
         }
     }
 }

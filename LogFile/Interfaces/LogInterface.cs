@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace LogFile.Interfaces
 {
-    public interface LogInterface
+    public interface LogInterface : LoggerMethodInterface
     {
-        public void set(string path, string fileName, string content = null);
-
         public bool check();
 
         public void save();
-
-        public string get();
 
         public void delete();
 

@@ -6,18 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogFile.LogType
+namespace LogFile
 {
-    internal class TxtLog :  LogType<String>, LogInterface
+    internal class TxtLog :  Logger<String>, LogInterface
     {
-        public void set(string path, string fileName, string content = null)
-        {
-            this.path = path;
-            this.fileName = fileName;
-            this.content = content;
-            this.fullFilePath = path + fileName + ".txt";
-        }
-
         public bool check()
         {
             try
@@ -60,10 +52,6 @@ namespace LogFile.LogType
             }
         }
 
-        public string get()
-        {
-            return this.log.ToString();
-        }
 
         public void delete()
         {
