@@ -16,11 +16,13 @@ namespace LogFileTest
         public void LogCreateLogTest()
         {
             //Arrange
-            var jsonLog = new Log("json");
+            var jsonLog = new Logger(LogTypeEnume.json);
             var actual = "{}";
-
+            jsonLog.path = "D:\\";
+            jsonLog.fileName = "test";
+            jsonLog.content = actual;
             //Act
-            jsonLog.saveLog("D:\\", "test", actual);
+            jsonLog.createLog();
 
             //Assert
             Assert.That(actual, Is.EqualTo(jsonLog.getLogString()));

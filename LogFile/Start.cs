@@ -11,10 +11,13 @@ namespace LogFile
     {
         static void Main(string[] args)
         {
-            var json = new Log("json");
-            json.saveLog("D:\\", "test", "{}");
+            var json = new Logger(LogTypeEnume.json);
+            json.path = "D:\\";
+            json.fileName = "test";
+            json.content = "{}";
+            json.createLog();
             Console.WriteLine(json.getLogString());
-            json.delete("D:\\", "test");
+            json.deleteLog();
 
             var doc = new XmlDocument();
             XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
@@ -37,15 +40,21 @@ namespace LogFile
             element4.AppendChild(text2);
             element2.AppendChild(element4);
 
-            var xml = new Log("xml");
-            xml.saveLog("D:\\", "test", doc.OuterXml);
+            var xml = new Logger(LogTypeEnume.xml);
+            xml.path = "D:\\";
+            xml.fileName = "test";
+            xml.content = doc.OuterXml;
+            xml.createLog();
             Console.WriteLine(xml.getLogString());
-            xml.delete("D:\\", "test");
+            xml.deleteLog();
 
-            var txt = new Log("txt");
-            txt.saveLog("D:\\", "test", "123");
+            var txt = new Logger(LogTypeEnume.txt);
+            txt.path = "D:\\";
+            txt.fileName = "test";
+            txt.content = "123";
+            txt.createLog();
             Console.WriteLine(txt.getLogString());
-            txt.delete("D:\\", "test");
+            txt.deleteLog();
         }
     }
 }
