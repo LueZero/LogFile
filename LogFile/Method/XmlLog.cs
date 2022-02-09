@@ -1,5 +1,4 @@
-﻿using LogFile.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,16 +8,15 @@ using System.Xml;
 
 namespace LogFile
 {
-    internal class XmlLog : LogInterface
+    internal class XmlLog : LogAbstract
     {
-        public XmlDocument logObject;
+        public XmlDocument logObject { get; set; }
 
         public XmlLog()
         {
-
         }
 
-        public bool check(string content)
+        public override bool check()
         {
             try
             {
@@ -34,24 +32,21 @@ namespace LogFile
             }
         }
 
-        public void save(string path, string fileName, string content)
+        public override void create()
         {
             string fullFilePath = path + fileName + ".xml";
-
-            if (this.check(content))
+            
+            try
             {
-                try
-                {
-                    this.logObject.Save(fullFilePath);
-                }
-                catch (XmlException ex)
-                {
-                    throw new Exception(ex.Message);
-                }
+                this.logObject.Save(fullFilePath);
+            }
+            catch (XmlException ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
-        public void delete(string path, string fileName)
+        public override void delete()
         {
             string fullFilePath = path + fileName + ".xml";
 
@@ -65,12 +60,12 @@ namespace LogFile
             File.Delete(fullFilePath);
         }
 
-        public void read(string fullFilePath)
+        public override void read(string fullFilePath)
         {
          
         }
 
-        public string get()
+        public override string get()
         {
             return this.logObject.OuterXml;
         }

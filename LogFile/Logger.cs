@@ -1,5 +1,4 @@
-﻿using LogFile.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,20 +8,12 @@ namespace LogFile
 {
     public class Logger
     {
+        private LogAbstract log;
+
         public Logger(LogTypeEnume logType)
         {
             initialization(logType);
         }
-
-        public string path { get; set; }
-
-        public string fileName { get; set; }
-
-        public string content { get; set; }
-
-        public string error { get; set; }
-
-        private LogInterface log;
 
         public void initialization(LogTypeEnume logType)
         {
@@ -43,19 +34,38 @@ namespace LogFile
             }
         }
 
-        public void createLog()
+        public void createLog(string path, string fileName, string content)
         {
-            this.log.save(this.path, this.fileName, this.content);
+            log.path = path;
+            log.fileName = fileName;
+            log.content = content;
+            
+            if (log.check())
+            {
+                this.log.create();
+            }
+          
+            this.restParameter();
         }
 
-        public void deleteLog()
+        public void deleteLog(string path, string fileName)
         {
-            this.log.delete(this.path, this.fileName);
+            log.path = path;
+            log.fileName = fileName;
+            this.log.delete();
+            this.restParameter();
         }
 
-        public string getLogString()
+        public string getLog()
         {
             return this.log.get();
+        }
+
+        public void restParameter()
+        {
+            log.path = "";
+            log.fileName = "";
+            log.content = "";
         }
     }
 }

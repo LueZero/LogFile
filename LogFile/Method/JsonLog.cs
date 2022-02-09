@@ -1,5 +1,4 @@
-﻿using LogFile.Interfaces;
-using System;
+﻿using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +8,15 @@ using Newtonsoft.Json.Linq;
 
 namespace LogFile
 {
-    internal class JsonLog : LogInterface
+    internal class JsonLog : LogAbstract
     {
-        public JObject logObject;
+        public JObject logObject { get; set; }
 
         public JsonLog()
         {
-
         }
 
-        public bool check(string content)
+        public override bool check()
         {
             try
             {
@@ -33,29 +31,26 @@ namespace LogFile
         }
 
 
-        public void save(string path, string fileName, string content)
+        public override void create()
         {
             string fullFilePath = path + fileName + ".json";
 
-            if (this.check(content))
+            try
             {
-                try
+                using (FileStream fs = File.Create(fullFilePath))
                 {
-                    using (FileStream fs = File.Create(fullFilePath))
-                    {
-                        byte[] info = new UTF8Encoding(true).GetBytes(this.logObject.ToString());
+                    byte[] info = new UTF8Encoding(true).GetBytes(this.logObject.ToString());
                        
-                        fs.Write(info, 0, info.Length);
-                    }
+                    fs.Write(info, 0, info.Length);
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
-        public void delete(string path, string fileName)
+        public override void delete()
         {
             string fullFilePath = path + fileName + ".json";
 
@@ -69,12 +64,12 @@ namespace LogFile
             File.Delete(fullFilePath);
         }
 
-        public void read(string fullFilePath)
+        public override void read(string fullFilePath)
         {
 
         }
 
-        public string get()
+        public override string get()
         {
             return this.logObject.ToString();
         }

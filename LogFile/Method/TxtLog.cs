@@ -1,5 +1,4 @@
-﻿using LogFile.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace LogFile
 {
-    internal class TxtLog : LogInterface
+    internal class TxtLog : LogAbstract
     {
-        public string logObject;
+        public string logObject { get; set; }
 
         public TxtLog()
         {
-
         }
 
-        public bool check(string content)
+        public override bool check()
         {
             try
             {
@@ -31,30 +29,27 @@ namespace LogFile
             }
         }
 
-        public void save(string path, string fileName, string content)
+        public override void create()
         {
             string fullFilePath = path + fileName + ".txt";
-
-            if (this.check(content))
+          
+            try
             {
-                try
+                using (FileStream fs = File.Create(fullFilePath))
                 {
-                    using (FileStream fs = File.Create(fullFilePath))
-                    {
-                        byte[] info = new UTF8Encoding(true).GetBytes(this.logObject.ToString());
+                    byte[] info = new UTF8Encoding(true).GetBytes(this.logObject.ToString());
 
-                        fs.Write(info, 0, info.Length);
-                    }
+                    fs.Write(info, 0, info.Length);
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
 
-        public void delete(string path, string fileName)
+        public override void delete()
         {
             string fullFilePath = path + fileName + ".txt";
 
@@ -68,12 +63,12 @@ namespace LogFile
             File.Delete(fullFilePath);
         }
 
-        public void read(string fullFilePath)
+        public override void read(string fullFilePath)
         {
 
         }
 
-        public string get()
+        public override string get()
         {
             return this.logObject.ToString();
         }

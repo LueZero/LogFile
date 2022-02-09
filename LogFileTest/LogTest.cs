@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using LogFile;
-using LogFile.Interfaces;
 using System;
 
 namespace LogFileTest
@@ -18,14 +17,12 @@ namespace LogFileTest
             //Arrange
             var jsonLog = new Logger(LogTypeEnume.json);
             var actual = "{}";
-            jsonLog.path = "D:\\";
-            jsonLog.fileName = "test";
-            jsonLog.content = actual;
+
             //Act
-            jsonLog.createLog();
+            jsonLog.createLog("D:\\", "test", actual);
 
             //Assert
-            Assert.That(actual, Is.EqualTo(jsonLog.getLogString()));
+            Assert.That(actual, Is.EqualTo(jsonLog.getLog()));
         }
     }
 }
