@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace LogFile
 {
-    public class Logger
+    public class Log
     {
         private LogAbstract log;
 
-        public Logger(LogTypeEnume logType)
+        public Log(LogTypeEnume logType)
         {
             initialization(logType);
         }
@@ -34,7 +34,7 @@ namespace LogFile
             }
         }
 
-        public void createLog(string path, string fileName, string content)
+        public void createLogFile(string path, string fileName, string content)
         {
             log.path = path;
             log.fileName = fileName;
@@ -44,19 +44,17 @@ namespace LogFile
             {
                 this.log.create();
             }
-          
-            this.restParameter();
         }
 
-        public void deleteLog(string path, string fileName)
+        public void deleteLogFile(string path, string fileName)
         {
             log.path = path;
             log.fileName = fileName;
+
             this.log.delete();
-            this.restParameter();
         }
 
-        public string getLog()
+        public string getLogFile()
         {
             return this.log.get();
         }

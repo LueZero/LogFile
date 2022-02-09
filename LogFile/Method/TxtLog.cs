@@ -9,7 +9,7 @@ namespace LogFile
 {
     internal class TxtLog : LogAbstract
     {
-        public string logObject { get; set; }
+        public string logType { get; set; }
 
         public TxtLog()
         {
@@ -19,7 +19,7 @@ namespace LogFile
         {
             try
             {
-                this.logObject = content;
+                this.logType = content;
 
                 return true;
             }
@@ -37,7 +37,7 @@ namespace LogFile
             {
                 using (FileStream fs = File.Create(fullFilePath))
                 {
-                    byte[] info = new UTF8Encoding(true).GetBytes(this.logObject.ToString());
+                    byte[] info = new UTF8Encoding(true).GetBytes(this.logType.ToString());
 
                     fs.Write(info, 0, info.Length);
                 }
@@ -70,7 +70,7 @@ namespace LogFile
 
         public override string get()
         {
-            return this.logObject.ToString();
+            return this.logType.ToString();
         }
     }
 }

@@ -15,14 +15,14 @@ namespace LogFileTest
         public void LogCreateLogTest()
         {
             //Arrange
-            var jsonLog = new Logger(LogTypeEnume.json);
+            var jsonLog = new Log(LogTypeEnume.json);
             var actual = "{}";
 
             //Act
-            jsonLog.createLog("D:\\", "test", actual);
+            jsonLog.createLogFile("D:\\", "test", actual);
 
             //Assert
-            Assert.That(actual, Is.EqualTo(jsonLog.getLog()));
+            Assert.That(actual, Is.EqualTo(jsonLog.getLogFile()));
         }
     }
 }

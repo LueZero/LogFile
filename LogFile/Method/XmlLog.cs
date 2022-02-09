@@ -10,7 +10,7 @@ namespace LogFile
 {
     internal class XmlLog : LogAbstract
     {
-        public XmlDocument logObject { get; set; }
+        public XmlDocument logType { get; set; }
 
         public XmlLog()
         {
@@ -20,9 +20,9 @@ namespace LogFile
         {
             try
             {
-                this.logObject = new XmlDocument();
+                this.logType = new XmlDocument();
 
-                this.logObject.LoadXml(content);
+                this.logType.LoadXml(content);
 
                 return true;
             }
@@ -38,7 +38,7 @@ namespace LogFile
             
             try
             {
-                this.logObject.Save(fullFilePath);
+                this.logType.Save(fullFilePath);
             }
             catch (XmlException ex)
             {
@@ -67,7 +67,7 @@ namespace LogFile
 
         public override string get()
         {
-            return this.logObject.OuterXml;
+            return this.logType.OuterXml;
         }
     }
 }
