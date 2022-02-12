@@ -16,6 +16,6 @@ namespace LogFile
 
         public string getLogFile();
 
-        public void restParameter();
+        public void resetParameter();
     }
 }

@@ -59,7 +59,7 @@ namespace LogFile
             return this.logAbstract.get();
         }
 
-        public void restParameter()
+        public void resetParameter()
         {
             logAbstract.path = "";
             logAbstract.fileName = "";
