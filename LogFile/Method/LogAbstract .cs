@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,17 @@ namespace LogFile
 
         abstract public void delete();
 
-        abstract public void read(string fullFilePath);
+        public FileStream read(string fullFilePath)
+        {
+            bool result = File.Exists(fullFilePath);
+
+            if (!result)
+            {
+                throw new Exception(fullFilePath + " Not Found");
+            }
+
+            return File.OpenRead(fullFilePath);
+        }
 
         abstract public string get();
     }

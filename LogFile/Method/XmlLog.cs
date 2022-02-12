@@ -59,12 +59,7 @@ namespace LogFile
 
             File.Delete(fullFilePath);
         }
-
-        public override void read(string fullFilePath)
-        {
-         
-        }
-
+             
         public override string get()
         {
             return this.logType.OuterXml;

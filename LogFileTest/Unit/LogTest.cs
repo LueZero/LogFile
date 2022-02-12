@@ -2,6 +2,8 @@ using NUnit.Framework;
 using LogFile;
 using System;
 using Moq;
+using System.Text;
+using System.IO;
 
 namespace LogFileTest
 {
@@ -68,6 +70,27 @@ namespace LogFileTest
             //Assert
             Assert.AreEqual(false, actual);
         }
+
+
+        [Test]
+        public void GivebCreateLogTxtType_WhenCeateLogClass_ThenReturnFileContent()
+        {
+            //Arrange
+            Log log = new Log(LogTypeEnume.txt);
+            string contetn = "hello";
+            log.createLogFile("D:\\", "test", contetn);
+            FileStream file = log.logAbstract.read("D:\\test.txt");
+
+            //Act
+            int len = (int)file.Length;
+            byte[] b = new byte[len];
+            int r = file.Read(b, 0, b.Length);
+            string actual = System.Text.Encoding.UTF8.GetString(b);
+           
+            //Assert
+            Assert.AreEqual(contetn, actual);
+        }
+
 
         [Test]
         public void GivenCreateLog_WhenLogAbstract_ThenReturnLogContent()
