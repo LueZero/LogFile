@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace LogFile
 {
-    internal class JsonLog : LogAbstract
+    public class JsonLog : LogAbstract
     {
         public JObject logType { get; set; }
 

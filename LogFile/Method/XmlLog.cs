@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace LogFile
 {
-    internal class XmlLog : LogAbstract
+    public class XmlLog : LogAbstract
     {
         public XmlDocument logType { get; set; }
 

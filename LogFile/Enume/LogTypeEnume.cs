@@ -11,9 +11,14 @@ namespace LogFile
     {
         [Description("json")]
         json,
+
         [Description("xml")]
         xml,
+
         [Description("txt")]
-        txt
+        txt,
+
+        [Description("yml")]
+        yml
     }
 }

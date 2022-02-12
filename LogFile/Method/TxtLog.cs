@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogFile
 {
-    internal class TxtLog : LogAbstract
+    public class TxtLog : LogAbstract
     {
         public string logType { get; set; }
 

@@ -11,7 +11,7 @@ namespace LogFile
     {
         static void Main(string[] args)
         {
-            var json = new Log(LogTypeEnume.json);
+            LogInterface json = new Log(LogTypeEnume.json);
             
             json.createLogFile("D:\\", "test", "{}");
 

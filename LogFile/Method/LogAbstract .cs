@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogFile
 {
-    abstract class LogAbstract
+    public abstract class LogAbstract
     {
         public string path { get; set; }
 

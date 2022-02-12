@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LogFile
 {
-    public class Log
+    public class Log : LogInterface
     {
-        private LogAbstract log;
+        public LogAbstract logAbstract { get; set; }
 
         public Log(LogTypeEnume logType)
         {
@@ -20,50 +20,50 @@ namespace LogFile
             switch (logType)
             {
                 case LogTypeEnume.json:
-                    log = new JsonLog();
+                    logAbstract = new JsonLog();
                     break;
                 case LogTypeEnume.xml:
-                    log = new XmlLog();
+                    logAbstract = new XmlLog();
                     break;
                 case LogTypeEnume.txt:
-                    log = new TxtLog();
+                    logAbstract = new TxtLog();
                     break;
                 default:
-                    log = null;
+                    logAbstract = null;
                     break;
             }
         }
 
         public void createLogFile(string path, string fileName, string content)
         {
-            log.path = path;
-            log.fileName = fileName;
-            log.content = content;
+            logAbstract.path = path;
+            logAbstract.fileName = fileName;
+            logAbstract.content = content;
             
-            if (log.check())
+            if (logAbstract.check())
             {
-                this.log.create();
+                this.logAbstract.create();
             }
         }
 
         public void deleteLogFile(string path, string fileName)
         {
-            log.path = path;
-            log.fileName = fileName;
+            logAbstract.path = path;
+            logAbstract.fileName = fileName;
 
-            this.log.delete();
+            this.logAbstract.delete();
         }
 
         public string getLogFile()
         {
-            return this.log.get();
+            return this.logAbstract.get();
         }
 
         public void restParameter()
         {
-            log.path = "";
-            log.fileName = "";
-            log.content = "";
+            logAbstract.path = "";
+            logAbstract.fileName = "";
+            logAbstract.content = "";
         }
     }
 }
