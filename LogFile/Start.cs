@@ -16,7 +16,7 @@ namespace LogFile
             json.createLogFile("D:\\", "test", "{}");
 
             Console.WriteLine(json.getLogFile());
-            
+           
             json.deleteLogFile("D:\\", "test");
         }
     }

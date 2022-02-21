@@ -23,7 +23,7 @@ namespace LogFile
 
         abstract public void delete();
 
-        public FileStream read(string fullFilePath)
+        public virtual FileStream read(string fullFilePath)
         {
             bool result = File.Exists(fullFilePath);
 

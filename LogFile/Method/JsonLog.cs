@@ -10,7 +10,7 @@ namespace LogFile
 {
     public class JsonLog : LogAbstract
     {
-        public JObject logType { get; set; }
+        public JObject log { get; set; }
 
         public JsonLog()
         {
@@ -20,7 +20,7 @@ namespace LogFile
         {
             try
             {
-                this.logType = JObject.Parse(content);
+                this.log = JObject.Parse(content);
 
                 return true;
             }
@@ -39,7 +39,7 @@ namespace LogFile
             {
                 using (FileStream fs = File.Create(fullFilePath))
                 {
-                    byte[] info = new UTF8Encoding(true).GetBytes(this.logType.ToString());
+                    byte[] info = new UTF8Encoding(true).GetBytes(this.log.ToString());
                        
                     fs.Write(info, 0, info.Length);
                 }
@@ -66,7 +66,7 @@ namespace LogFile
 
         public override string get()
         {
-            return this.logType.ToString();
+            return this.log.ToString();
         }
     }
 }

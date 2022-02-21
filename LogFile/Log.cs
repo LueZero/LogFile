@@ -8,7 +8,7 @@ namespace LogFile
 {
     public class Log : LogInterface
     {
-        public LogAbstract logAbstract { get; set; }
+        public virtual LogAbstract logAbstract { get; set; }
 
         public Log(LogTypeEnume logType)
         {
@@ -34,7 +34,7 @@ namespace LogFile
             }
         }
 
-        public void createLogFile(string path, string fileName, string content)
+        public virtual void createLogFile(string path, string fileName, string content)
         {
             logAbstract.path = path;
             logAbstract.fileName = fileName;
