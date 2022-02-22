@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,7 +47,7 @@ namespace LogFile
             }
         }
 
-        public void deleteLogFile(string path, string fileName)
+        public virtual void deleteLogFile(string path, string fileName)
         {
             logAbstract.path = path;
             logAbstract.fileName = fileName;
@@ -54,9 +55,14 @@ namespace LogFile
             this.logAbstract.delete();
         }
 
-        public string getLogFile()
+        public virtual string getLogFile()
         {
             return this.logAbstract.get();
+        }
+
+        public virtual FileStream readLogFile(string fullFilePath)
+        {
+            return this.logAbstract.read(fullFilePath);
         }
 
         public void resetParameter()

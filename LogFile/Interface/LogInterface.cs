@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,5 +18,7 @@ namespace LogFile
         public string getLogFile();
 
         public void resetParameter();
+
+        public FileStream readLogFile();
     }
 }
