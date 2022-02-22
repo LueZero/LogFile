@@ -19,6 +19,6 @@ namespace LogFile
 
         public void resetParameter();
 
-        public FileStream readLogFile();
+        public FileStream readLogFile(string fullFilePath);
     }
 }
