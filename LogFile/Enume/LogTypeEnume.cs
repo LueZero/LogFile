@@ -10,15 +10,15 @@ namespace LogFile
     public enum LogTypeEnume
     {
         [Description("json")]
-        json,
+        Json,
 
         [Description("xml")]
-        xml,
+        Xml,
 
         [Description("txt")]
-        txt,
+        Txt,
 
         [Description("yml")]
-        yml
+        Yml
     }
 }

@@ -17,9 +17,9 @@ namespace LogFileTest.Feature
             //Arrange
             string contetn = "hello";
 
-            var mock = new Mock<Log>(LogTypeEnume.txt);
+            var mock = new Mock<Log>(LogTypeEnume.Txt);
 
-            mock.Setup(m => m.createLogFile("D:\\", "test", contetn)).Callback((string path, string fileName, string content) => {
+            mock.Setup(m => m.CreateLogFile("D:\\", "test", contetn)).Callback((string path, string fileName, string content) => {
                 
                 string fullFilePath = path + fileName + ".txt";
 
@@ -32,16 +32,16 @@ namespace LogFileTest.Feature
 
             }).Verifiable();
 
-            mock.Setup(m => m.logAbstract.read("D:\\test.txt")).Returns((string fullFilePath) => {
+            mock.Setup(m => m.LogAbstract.read("D:\\test.txt")).Returns((string fullFilePath) => {
 
                 return File.OpenRead(fullFilePath);
 
             });
 
             //Act
-            mock.Object.createLogFile("D:\\", "test", contetn);
+            mock.Object.CreateLogFile("D:\\", "test", contetn);
 
-            FileStream file = mock.Object.logAbstract.read("D:\\test.txt");
+            FileStream file = mock.Object.LogAbstract.read("D:\\test.txt");
             
             int len = (int)file.Length;
             byte[] b = new byte[len];

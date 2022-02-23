@@ -10,7 +10,7 @@ namespace LogFile
 {
     public class XmlLog : LogAbstract
     {
-        public XmlDocument log { get; set; }
+        public XmlDocument Log { get; set; }
 
         public XmlLog()
         {
@@ -20,9 +20,9 @@ namespace LogFile
         {
             try
             {
-                this.log = new XmlDocument();
+                this.Log = new XmlDocument();
 
-                this.log.LoadXml(content);
+                this.Log.LoadXml(Content);
 
                 return true;
             }
@@ -34,11 +34,11 @@ namespace LogFile
 
         public override void create()
         {
-            string fullFilePath = path + fileName + ".xml";
+            string fullFilePath = Path + FileName + ".xml";
             
             try
             {
-                this.log.Save(fullFilePath);
+                this.Log.Save(fullFilePath);
             }
             catch (XmlException ex)
             {
@@ -48,7 +48,7 @@ namespace LogFile
 
         public override void delete()
         {
-            string fullFilePath = path + fileName + ".xml";
+            string fullFilePath = Path + FileName + ".xml";
 
             bool result = File.Exists(fullFilePath);
 
@@ -62,7 +62,7 @@ namespace LogFile
              
         public override string get()
         {
-            return this.log.OuterXml;
+            return this.Log.OuterXml;
         }
     }
 }

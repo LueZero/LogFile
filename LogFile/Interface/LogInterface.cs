@@ -9,16 +9,16 @@ namespace LogFile
 {
     public interface LogInterface
     {
-        public LogAbstract logAbstract { get; set; }
+        public LogAbstract LogAbstract { get; set; }
 
-        public void createLogFile(string path, string fileName, string content);
+        public void CreateLogFile(string path, string fileName, string content);
 
-        public void deleteLogFile(string path, string fileName);
+        public void DeleteLogFile(string path, string fileName);
 
-        public string getLogFile();
+        public string GetLogFile();
 
-        public void resetParameter();
+        public void ResetParameter();
 
-        public FileStream readLogFile(string fullFilePath);
+        public FileStream ReadLogFile(string fullFilePath);
     }
 }

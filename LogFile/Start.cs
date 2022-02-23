@@ -11,13 +11,13 @@ namespace LogFile
     {
         static void Main(string[] args)
         {
-            var json = new Log(LogTypeEnume.json);
+            var json = new Log(LogTypeEnume.Txt);
             
-            json.createLogFile("D:\\", "test", "{}");
+            json.CreateLogFile("D:\\", "test", "{}");
 
-            Console.WriteLine(json.getLogFile());
+            Console.WriteLine(json.GetLogFile());
            
-            json.deleteLogFile("D:\\", "test");
+            json.DeleteLogFile("D:\\", "test");
         }
     }
 }

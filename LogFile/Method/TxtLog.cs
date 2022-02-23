@@ -9,7 +9,7 @@ namespace LogFile
 {
     public class TxtLog : LogAbstract
     {
-        public string log { get; set; }
+        public string Log { get; set; }
 
         public TxtLog()
         {
@@ -19,7 +19,7 @@ namespace LogFile
         {
             try
             {
-                this.log = content;
+                this.Log = Content;
 
                 return true;
             }
@@ -31,13 +31,13 @@ namespace LogFile
 
         public override void create()
         {
-            string fullFilePath = path + fileName + ".txt";
+            string fullFilePath = Path + FileName + ".txt";
           
             try
             {
                 using (FileStream fs = File.Create(fullFilePath))
                 {
-                    byte[] info = new UTF8Encoding(true).GetBytes(this.log.ToString());
+                    byte[] info = new UTF8Encoding(true).GetBytes(this.Log.ToString());
 
                     fs.Write(info, 0, info.Length);
                 }
@@ -51,7 +51,7 @@ namespace LogFile
 
         public override void delete()
         {
-            string fullFilePath = path + fileName + ".txt";
+            string fullFilePath = Path + FileName + ".txt";
 
             bool result = File.Exists(fullFilePath);
 
@@ -65,7 +65,7 @@ namespace LogFile
 
         public override string get()
         {
-            return this.log.ToString();
+            return this.Log.ToString();
         }
     }
 }

@@ -9,13 +9,13 @@ namespace LogFile
 {
     public abstract class LogAbstract
     {
-        public string path { get; set; }
+        public string Path { get; set; }
 
-        public string fileName { get; set; }
+        public string FileName { get; set; }
 
-        public string content { get; set; }
+        public string Content { get; set; }
 
-        public string error { get; set; }
+        public string Error { get; set; }
 
         abstract public bool check();
 

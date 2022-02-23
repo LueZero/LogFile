@@ -14,10 +14,10 @@ namespace LogFileTest
         public void GivenLogJsonType_WhenCeateLogClass_ThenReturnLogAbstract()
         {
             //Arrange
-            Log log = new Log(LogTypeEnume.json);
+            Log log = new Log(LogTypeEnume.Json);
 
             //Act
-            LogAbstract logAbstract = log.logAbstract;
+            LogAbstract logAbstract = log.LogAbstract;
             bool actual = (logAbstract is LogAbstract);
 
             //Assert
@@ -28,10 +28,10 @@ namespace LogFileTest
         public void GivenLogXmlType_WhenCeateLogClass_ThenReturnLogAbstract()
         {
             //Arrange
-            Log log = new Log(LogTypeEnume.xml);
+            Log log = new Log(LogTypeEnume.Xml);
 
             //Act
-            LogAbstract logAbstract = log.logAbstract;
+            LogAbstract logAbstract = log.LogAbstract;
             bool actual = (logAbstract is LogAbstract);
 
             //Assert
@@ -42,10 +42,10 @@ namespace LogFileTest
         public void GivenLogTxtType_WhenCeateLogClass_ThenReturnLogAbstract()
         {
             //Arrange
-            Log log = new Log(LogTypeEnume.txt);
+            Log log = new Log(LogTypeEnume.Txt);
 
             //Act
-            LogAbstract logAbstract = log.logAbstract;
+            LogAbstract logAbstract = log.LogAbstract;
             bool actual = (logAbstract is LogAbstract);
 
             //Assert
@@ -56,10 +56,10 @@ namespace LogFileTest
         public void GivebNotExistedLogType_WhenCeateLogClass_ThenReturnNull()
         {
             //Arrange
-            Log log = new Log(LogTypeEnume.yml);
+            Log log = new Log(LogTypeEnume.Yml);
 
             //Act
-            LogAbstract logAbstract = log.logAbstract;
+            LogAbstract logAbstract = log.LogAbstract;
             bool actual = (logAbstract is LogAbstract);
 
             //Assert

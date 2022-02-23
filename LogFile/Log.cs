@@ -9,7 +9,7 @@ namespace LogFile
 {
     public class Log : LogInterface
     {
-        public virtual LogAbstract logAbstract { get; set; }
+        public virtual LogAbstract LogAbstract { get; set; }
 
         public Log(LogTypeEnume logType)
         {
@@ -20,56 +20,56 @@ namespace LogFile
         {
             switch (logType)
             {
-                case LogTypeEnume.json:
-                    logAbstract = new JsonLog();
+                case LogTypeEnume.Json:
+                    LogAbstract = new JsonLog();
                     break;
-                case LogTypeEnume.xml:
-                    logAbstract = new XmlLog();
+                case LogTypeEnume.Xml:
+                    LogAbstract = new XmlLog();
                     break;
-                case LogTypeEnume.txt:
-                    logAbstract = new TxtLog();
+                case LogTypeEnume.Txt:
+                    LogAbstract = new TxtLog();
                     break;
                 default:
-                    logAbstract = null;
+                    LogAbstract = null;
                     break;
             }
         }
 
-        public virtual void createLogFile(string path, string fileName, string content)
+        public virtual void CreateLogFile(string path, string fileName, string content)
         {
-            logAbstract.path = path;
-            logAbstract.fileName = fileName;
-            logAbstract.content = content;
+            LogAbstract.Path = path;
+            LogAbstract.FileName = fileName;
+            LogAbstract.Content = content;
             
-            if (logAbstract.check())
+            if (LogAbstract.check())
             {
-                this.logAbstract.create();
+                this.LogAbstract.create();
             }
         }
 
-        public virtual void deleteLogFile(string path, string fileName)
+        public virtual void DeleteLogFile(string path, string fileName)
         {
-            logAbstract.path = path;
-            logAbstract.fileName = fileName;
+            LogAbstract.Path = path;
+            LogAbstract.FileName = fileName;
 
-            this.logAbstract.delete();
+            this.LogAbstract.delete();
         }
 
-        public virtual string getLogFile()
+        public virtual string GetLogFile()
         {
-            return this.logAbstract.get();
+            return this.LogAbstract.get();
         }
 
-        public virtual FileStream readLogFile(string fullFilePath)
+        public virtual FileStream ReadLogFile(string fullFilePath)
         {
-            return this.logAbstract.read(fullFilePath);
+            return this.LogAbstract.read(fullFilePath);
         }
 
-        public void resetParameter()
+        public void ResetParameter()
         {
-            logAbstract.path = "";
-            logAbstract.fileName = "";
-            logAbstract.content = "";
+            LogAbstract.Path = "";
+            LogAbstract.FileName = "";
+            LogAbstract.Content = "";
         }
     }
 }
