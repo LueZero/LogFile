@@ -17,13 +17,13 @@ namespace LogFile
 
         public string Error { get; set; }
 
-        abstract public bool check();
+        abstract public bool Check();
 
-        abstract public void create();
+        abstract public void Create();
 
-        abstract public void delete();
+        abstract public void Delete();
 
-        public virtual FileStream read(string fullFilePath)
+        public virtual FileStream Read(string fullFilePath)
         {
             bool result = File.Exists(fullFilePath);
 
@@ -35,6 +35,6 @@ namespace LogFile
             return File.OpenRead(fullFilePath);
         }
 
-        abstract public string get();
+        abstract public string Get();
     }
 }

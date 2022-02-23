@@ -32,7 +32,7 @@ namespace LogFileTest.Feature
 
             }).Verifiable();
 
-            mock.Setup(m => m.LogAbstract.read("D:\\test.txt")).Returns((string fullFilePath) => {
+            mock.Setup(m => m.LogAbstract.Read("D:\\test.txt")).Returns((string fullFilePath) => {
 
                 return File.OpenRead(fullFilePath);
 
@@ -41,7 +41,7 @@ namespace LogFileTest.Feature
             //Act
             mock.Object.CreateLogFile("D:\\", "test", contetn);
 
-            FileStream file = mock.Object.LogAbstract.read("D:\\test.txt");
+            FileStream file = mock.Object.LogAbstract.Read("D:\\test.txt");
             
             int len = (int)file.Length;
             byte[] b = new byte[len];

@@ -41,9 +41,9 @@ namespace LogFile
             LogAbstract.FileName = fileName;
             LogAbstract.Content = content;
             
-            if (LogAbstract.check())
+            if (LogAbstract.Check())
             {
-                this.LogAbstract.create();
+                this.LogAbstract.Create();
             }
         }
 
@@ -52,17 +52,17 @@ namespace LogFile
             LogAbstract.Path = path;
             LogAbstract.FileName = fileName;
 
-            this.LogAbstract.delete();
+            this.LogAbstract.Delete();
         }
 
         public virtual string GetLogFile()
         {
-            return this.LogAbstract.get();
+            return this.LogAbstract.Get();
         }
 
         public virtual FileStream ReadLogFile(string fullFilePath)
         {
-            return this.LogAbstract.read(fullFilePath);
+            return this.LogAbstract.Read(fullFilePath);
         }
 
         public void ResetParameter()

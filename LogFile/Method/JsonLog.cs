@@ -16,7 +16,7 @@ namespace LogFile
         {
         }
 
-        public override bool check()
+        public override bool Check()
         {
             try
             {
@@ -31,7 +31,7 @@ namespace LogFile
         }
 
 
-        public override void create()
+        public override void Create()
         {
             string fullFilePath = Path + FileName + ".json";
 
@@ -50,7 +50,7 @@ namespace LogFile
             }
         }
 
-        public override void delete()
+        public override void Delete()
         {
             string fullFilePath = Path + FileName + ".json";
 
@@ -64,7 +64,7 @@ namespace LogFile
             File.Delete(fullFilePath);
         }
 
-        public override string get()
+        public override string Get()
         {
             return this.Log.ToString();
         }
