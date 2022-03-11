@@ -12,12 +12,12 @@ namespace LogFileTest.Feature
     class LogTest
     {
         [Test]
-        public void GiveLogTxtType_WhenCeateLogClass_ThenReturnFileContent()
+        public void GiveLogTxtType_CreateLoggerStringGenerics_ThenReturnFileContent()
         {
             //Arrange
             string contetn = "hello";
 
-            var mock = new Mock<Log>(LogTypeEnume.Txt);
+            var mock = new Mock<Logger<string>>(LogTypeEnum.Txt);
 
             mock.Setup(m => m.CreateLogFile("D:\\", "test", contetn)).Callback((string path, string fileName, string content) => {
                 
@@ -32,7 +32,7 @@ namespace LogFileTest.Feature
 
             }).Verifiable();
 
-            mock.Setup(m => m.LogAbstract.Read("D:\\test.txt")).Returns((string fullFilePath) => {
+            mock.Setup(m => m.Log.Read("D:\\test.txt")).Returns((string fullFilePath) => {
 
                 return File.OpenRead(fullFilePath);
 
@@ -41,7 +41,7 @@ namespace LogFileTest.Feature
             //Act
             mock.Object.CreateLogFile("D:\\", "test", contetn);
 
-            FileStream file = mock.Object.LogAbstract.Read("D:\\test.txt");
+            FileStream file = mock.Object.Log.Read("D:\\test.txt");
             
             int len = (int)file.Length;
             byte[] b = new byte[len];

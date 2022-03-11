@@ -4,6 +4,7 @@ using System;
 using Moq;
 using System.Text;
 using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace LogFileTest
 {
@@ -11,56 +12,28 @@ namespace LogFileTest
     public class LogTest
     {
         [Test]
-        public void GivenLogJsonType_WhenCeateLogClass_ThenReturnLogAbstract()
+        public void GivenLogJsonType_WhenCreateLoggerJObjectGenerics_ThenReturnLog()
         {
             //Arrange
-            Log log = new Log(LogTypeEnume.Json);
+            var json = new Logger<JObject>(LogTypeEnum.Json);
 
             //Act
-            LogAbstract logAbstract = log.LogAbstract;
-            bool actual = (logAbstract is LogAbstract);
+            var log = json.Log;
+            bool actual = (log is LogAbstract<JObject>);
 
             //Assert
             Assert.AreEqual(true, actual);
         }
 
         [Test]
-        public void GivenLogXmlType_WhenCeateLogClass_ThenReturnLogAbstract()
+        public void GivebNotExistedLogType_WhenCreateLoggerStringGenerics_ThenReturnNull()
         {
             //Arrange
-            Log log = new Log(LogTypeEnume.Xml);
+            var yml = new Logger<string>(LogTypeEnum.Yml);
 
             //Act
-            LogAbstract logAbstract = log.LogAbstract;
-            bool actual = (logAbstract is LogAbstract);
-
-            //Assert
-            Assert.AreEqual(true, actual);
-        }
-
-        [Test]
-        public void GivenLogTxtType_WhenCeateLogClass_ThenReturnLogAbstract()
-        {
-            //Arrange
-            Log log = new Log(LogTypeEnume.Txt);
-
-            //Act
-            LogAbstract logAbstract = log.LogAbstract;
-            bool actual = (logAbstract is LogAbstract);
-
-            //Assert
-            Assert.AreEqual(true, actual);
-        }
-
-        [Test]
-        public void GivebNotExistedLogType_WhenCeateLogClass_ThenReturnNull()
-        {
-            //Arrange
-            Log log = new Log(LogTypeEnume.Yml);
-
-            //Act
-            LogAbstract logAbstract = log.LogAbstract;
-            bool actual = (logAbstract is LogAbstract);
+            var log =  yml.Log;
+            bool actual = (log is LogAbstract<string>);
 
             //Assert
             Assert.AreEqual(false, actual);

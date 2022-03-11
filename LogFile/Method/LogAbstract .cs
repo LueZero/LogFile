@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace LogFile
 {
-    public abstract class LogAbstract
+    public abstract class LogAbstract<T>
     {
+        public virtual T DataFormat { get; set;}
+
         public string Path { get; set; }
 
         public string FileName { get; set; }

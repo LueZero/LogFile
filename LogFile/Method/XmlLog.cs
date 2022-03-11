@@ -1,28 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace LogFile
 {
-    public class XmlLog : LogAbstract
+    public class XmlLog : LogAbstract<XmlDocument>
     {
-        public XmlDocument Log { get; set; }
-
-        public XmlLog()
-        {
-        }
-
         public override bool Check()
         {
             try
-            {
-                this.Log = new XmlDocument();
-
-                this.Log.LoadXml(Content);
+            { 
+                this.DataFormat = new XmlDocument();
 
                 return true;
             }
@@ -38,7 +32,7 @@ namespace LogFile
             
             try
             {
-                this.Log.Save(fullFilePath);
+                this.DataFormat.Save(fullFilePath);
             }
             catch (XmlException ex)
             {
@@ -62,7 +56,7 @@ namespace LogFile
              
         public override string Get()
         {
-            return this.Log.OuterXml;
+            return "";
         }
     }
 }

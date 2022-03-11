@@ -8,19 +8,15 @@ using Newtonsoft.Json.Linq;
 
 namespace LogFile
 {
-    public class JsonLog : LogAbstract
+    public class JsonLog : LogAbstract<JObject>
     {
-        public JObject Log { get; set; }
-
-        public JsonLog()
-        {
-        }
-
         public override bool Check()
         {
             try
             {
-                this.Log = JObject.Parse(Content);
+                var json = JObject.Parse(Content);
+
+                this.DataFormat = json;
 
                 return true;
             }
@@ -39,7 +35,7 @@ namespace LogFile
             {
                 using (FileStream fs = File.Create(fullFilePath))
                 {
-                    byte[] info = new UTF8Encoding(true).GetBytes(this.Log.ToString());
+                    byte[] info = new UTF8Encoding(true).GetBytes(this.DataFormat.ToString());
                        
                     fs.Write(info, 0, info.Length);
                 }
@@ -66,7 +62,7 @@ namespace LogFile
 
         public override string Get()
         {
-            return this.Log.ToString();
+            return this.DataFormat.ToString();
         }
     }
 }

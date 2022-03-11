@@ -7,19 +7,13 @@ using System.Threading.Tasks;
 
 namespace LogFile
 {
-    public class TxtLog : LogAbstract
+    public class TxtLog : LogAbstract<String>
     {
-        public string Log { get; set; }
-
-        public TxtLog()
-        {
-        }
-
         public override bool Check()
         {
             try
             {
-                this.Log = Content;
+                this.DataFormat = Content;
 
                 return true;
             }
@@ -37,7 +31,7 @@ namespace LogFile
             {
                 using (FileStream fs = File.Create(fullFilePath))
                 {
-                    byte[] info = new UTF8Encoding(true).GetBytes(this.Log.ToString());
+                    byte[] info = new UTF8Encoding(true).GetBytes(this.DataFormat.ToString());
 
                     fs.Write(info, 0, info.Length);
                 }
@@ -65,7 +59,7 @@ namespace LogFile
 
         public override string Get()
         {
-            return this.Log.ToString();
+            return this.DataFormat.ToString();
         }
     }
 }
