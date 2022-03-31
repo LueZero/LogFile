@@ -9,9 +9,9 @@ using System.Xml;
 
 namespace LogFile
 {
-    public class Logger<T> : LogInterface<T> where T : class
+    public class Logger : LogInterface
     {
-        public virtual LogAbstract<T> Log { get; set; }
+        public virtual Log Log { get; set; }
 
         public Logger(LogTypeEnum logType)
         {
@@ -23,13 +23,13 @@ namespace LogFile
             switch (logType)
             {
                 case LogTypeEnum.Json:
-                    Log = (LogAbstract<T>)(object)new JsonLog();
+                    Log = new JsonLog();
                     break;
                 case LogTypeEnum.Xml:
-                    Log = (LogAbstract<T>)(object)new XmlLog();
+                    Log = new XmlLog();
                     break;
                 case LogTypeEnum.Txt:
-                    Log = (LogAbstract<T>)(object)new TxtLog();
+                    Log = new TxtLog();
                     break;
                 default:
                     Log = null;
@@ -37,11 +37,15 @@ namespace LogFile
             }
         }
 
-        public virtual void CreateLogFile(string path, string fileName, string content)
+        public virtual void SetLogFileContent(string content)
+        {
+            Log.Content = content;
+        }
+
+        public virtual void CreateLogFile(string path, string fileName)
         {
             Log.Path = path;
             Log.FileName = fileName;
-            Log.Content = content;
             
             if (Log.Check())
             {
@@ -57,7 +61,7 @@ namespace LogFile
             this.Log.Delete();
         }
 
-        public virtual string GetLogFile()
+        public virtual string GetLogFileCotent()
         {
             return this.Log.Get();
         }

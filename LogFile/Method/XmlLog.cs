@@ -10,13 +10,17 @@ using System.Xml.Serialization;
 
 namespace LogFile
 {
-    public class XmlLog : LogAbstract<XmlDocument>
+    public class XmlLog : Log
     {
+        private XmlDocument _xml;
+
         public override bool Check()
         {
             try
             { 
-                this.DataFormat = new XmlDocument();
+                _xml = new XmlDocument();
+
+                _xml.LoadXml(this.Content);
 
                 return true;
             }
@@ -32,7 +36,7 @@ namespace LogFile
             
             try
             {
-                this.DataFormat.Save(fullFilePath);
+                _xml.Save(fullFilePath);
             }
             catch (XmlException ex)
             {
@@ -56,7 +60,7 @@ namespace LogFile
              
         public override string Get()
         {
-            return "";
+            return _xml.OuterXml;
         }
     }
 }

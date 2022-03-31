@@ -9,15 +9,17 @@ using System.Xml;
 
 namespace LogFile
 {
-    public interface LogInterface<T>
+    public interface LogInterface
     {
-        public LogAbstract<T> Log { get; set; }
+        public Log Log { get; set; }
 
-        public void CreateLogFile(string path, string fileName, string content);
+        public void SetLogFileContent(string content);
+
+        public void CreateLogFile(string path, string fileName);
 
         public void DeleteLogFile(string path, string fileName);
 
-        public string GetLogFile();
+        public string GetLogFileCotent();
 
         public void ResetParameter();
 
