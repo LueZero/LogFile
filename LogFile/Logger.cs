@@ -15,10 +15,10 @@ namespace LogFile
 
         public Logger(LogTypeEnum logType)
         {
-            initialization(logType);
+            Initialization(logType);
         }
 
-        public void initialization(LogTypeEnum logType)
+        public void Initialization(LogTypeEnum logType)
         {
             switch (logType)
             {
