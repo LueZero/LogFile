@@ -17,14 +17,14 @@ namespace LogFile
         {
             InitializationLog(logType);
             InitializationPath(path, fileNanme);
-            CheckLogger();
+            CheckLog();
         }
 
         public void RestLogger(LogTypeEnum logType, string path, string fileNanme)
         {
             InitializationLog(logType);
             InitializationPath(path, fileNanme);
-            CheckLogger();
+            CheckLog();
         }
 
         public void InitializationLog(LogTypeEnum logType)
@@ -46,7 +46,7 @@ namespace LogFile
             }
         }
 
-        private void CheckLogger()
+        private void CheckLog()
         {
             if (Log == null)
                 throw new Exception("Log is null");
@@ -74,7 +74,7 @@ namespace LogFile
             this.Log.Delete();
         }
 
-        public virtual string GetLogFileCotent()
+        public virtual string GetLogFileContent()
         {
             return this.Log.Get();
         }

@@ -19,7 +19,7 @@ namespace LogFile
 
         public void DeleteLogFile();
 
-        public string GetLogFileCotent();
+        public string GetLogFileContent();
 
         public void ResetParameter();
 

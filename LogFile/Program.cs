@@ -18,7 +18,7 @@ namespace LogFile
             json.SetLogFileContent("{}");
             json.CreateLogFile();
 
-            Console.WriteLine(json.GetLogFileCotent());
+            Console.WriteLine(json.GetLogFileContent());
             json.DeleteLogFile();
 
 
@@ -44,7 +44,7 @@ namespace LogFile
             xml.SetLogFileContent(doc.OuterXml);
             xml.CreateLogFile();
 
-            Console.WriteLine(xml.GetLogFileCotent());
+            Console.WriteLine(xml.GetLogFileContent());
             xml.DeleteLogFile();
         }
     }
