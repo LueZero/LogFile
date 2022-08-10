@@ -15,9 +15,9 @@ namespace LogFile
 
         public void SetLogFileContent(string content);
 
-        public void CreateLogFile(string path, string fileName);
+        public void CreateLogFile();
 
-        public void DeleteLogFile(string path, string fileName);
+        public void DeleteLogFile();
 
         public string GetLogFileCotent();
 

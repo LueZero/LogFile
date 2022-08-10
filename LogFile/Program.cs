@@ -8,21 +8,21 @@ using System.Xml;
 
 namespace LogFile
 {
-    class Start
+    class Program
     {
         static void Main(string[] args)
         {
-            var json = new Logger(LogTypeEnum.Json);
+            // JSON
+            var json = new Logger(LogTypeEnum.Json, "D:\\", "test");
 
             json.SetLogFileContent("{}");
-            json.CreateLogFile("D:\\", "test");
+            json.CreateLogFile();
 
             Console.WriteLine(json.GetLogFileCotent());
-           
-            json.DeleteLogFile("D:\\", "test");
+            json.DeleteLogFile();
 
-            ///分隔線///
 
+            // XML
             var doc = new XmlDocument();
             XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
             XmlElement root = doc.DocumentElement;
@@ -40,14 +40,12 @@ namespace LogFile
             element4.AppendChild(text2);
             element2.AppendChild(element4);
 
-            var xml = new Logger(LogTypeEnum.Xml);
-
+            var xml = new Logger(LogTypeEnum.Xml, "D:\\", "test");
             xml.SetLogFileContent(doc.OuterXml);
-            xml.CreateLogFile("D:\\", "test");
+            xml.CreateLogFile();
 
             Console.WriteLine(xml.GetLogFileCotent());
-
-            xml.DeleteLogFile("D:\\", "test");
+            xml.DeleteLogFile();
         }
     }
 }

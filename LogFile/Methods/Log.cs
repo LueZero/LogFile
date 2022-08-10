@@ -28,9 +28,7 @@ namespace LogFile
             bool result = File.Exists(fullFilePath);
 
             if (!result)
-            {
                 throw new Exception(fullFilePath + " Not Found");
-            }
 
             return File.OpenRead(fullFilePath);
         }
