@@ -13,17 +13,17 @@ namespace LogFile
     {
         public virtual Log Log { get; set; }
 
-        public Logger(LogTypeEnum logType, string path, string fileNanme)
+        public Logger(LogTypeEnum logType, string path, string fileName)
         {
             InitializationLog(logType);
-            InitializationPath(path, fileNanme);
+            InitializationPath(path, fileName);
             CheckLog();
         }
 
-        public void RestLogger(LogTypeEnum logType, string path, string fileNanme)
+        public void RestLogger(LogTypeEnum logType, string path, string fileName)
         {
             InitializationLog(logType);
-            InitializationPath(path, fileNanme);
+            InitializationPath(path, fileName);
             CheckLog();
         }
 
@@ -52,10 +52,10 @@ namespace LogFile
                 throw new Exception("Log is null");
         }
 
-        public void InitializationPath(string path, string fileNanme)
+        public void InitializationPath(string path, string fileName)
         {          
             Log.Path = path;
-            Log.FileName = fileNanme;
+            Log.FileName = fileName;
         }
 
         public virtual void SetLogFileContent(string content)
