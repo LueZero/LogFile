@@ -15,19 +15,19 @@ namespace LogFile
 
         public Logger(LogTypeEnum logType, string path, string fileName)
         {
-            InitializationLog(logType);
-            InitializationPath(path, fileName);
+            InitializeLog(logType);
+            InitializePath(path, fileName);
             CheckLog();
         }
 
         public void RestLogger(LogTypeEnum logType, string path, string fileName)
         {
-            InitializationLog(logType);
-            InitializationPath(path, fileName);
+            InitializeLog(logType);
+            InitializePath(path, fileName);
             CheckLog();
         }
 
-        public void InitializationLog(LogTypeEnum logType)
+        public void InitializeLog(LogTypeEnum logType)
         {
             switch (logType)
             {
@@ -46,16 +46,16 @@ namespace LogFile
             }
         }
 
+        public void InitializePath(string path, string fileName)
+        {          
+            Log.Path = path;
+            Log.FileName = fileName;
+        }
+
         private void CheckLog()
         {
             if (Log == null)
                 throw new Exception("Log is null");
-        }
-
-        public void InitializationPath(string path, string fileName)
-        {          
-            Log.Path = path;
-            Log.FileName = fileName;
         }
 
         public virtual void SetLogFileContent(string content)
