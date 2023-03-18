@@ -30,7 +30,7 @@ namespace LogFile
 
         public override void Create()
         {
-            string fullFilePath = Path + FileName + ".txt";
+            string fullFilePath = FullFilePath + ".txt";
           
             try
             {

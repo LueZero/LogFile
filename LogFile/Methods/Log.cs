@@ -13,6 +13,8 @@ namespace LogFile
 
         public string FileName { get; set; }
 
+        protected string FullFilePath => Path + FileName;
+
         public string Content { get; set; }
 
         public string Error { get; set; }

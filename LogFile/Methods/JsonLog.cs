@@ -29,7 +29,7 @@ namespace LogFile
 
         public override void Create()
         {
-            string fullFilePath = Path + FileName + ".json";
+            string fullFilePath = FullFilePath + ".json";
 
             try
             {

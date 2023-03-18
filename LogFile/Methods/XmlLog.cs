@@ -32,7 +32,7 @@ namespace LogFile
 
         public override void Create()
         {
-            string fullFilePath = Path + FileName + ".xml";
+            string fullFilePath = FullFilePath + ".xml";
             
             try
             {
