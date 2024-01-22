@@ -13,7 +13,7 @@ namespace LogFile
         static void Main(string[] args)
         {
             // JSON
-            var json = new Logger(LogTypeEnum.Json, "D:\\", "test");
+            var json = new Logger(LogType.Json, "D:\\", "test");
 
             json.SetLogFileContent("{}");
             json.CreateLogFile();
@@ -40,7 +40,7 @@ namespace LogFile
             element4.AppendChild(text2);
             element2.AppendChild(element4);
 
-            var xml = new Logger(LogTypeEnum.Xml, "D:\\", "test");
+            var xml = new Logger(LogType.Xml, "D:\\", "test");
             xml.SetLogFileContent(doc.OuterXml);
             xml.CreateLogFile();
 

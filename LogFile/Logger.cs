@@ -13,31 +13,31 @@ namespace LogFile
     {
         public virtual Log Log { get; set; }
 
-        public Logger(LogTypeEnum logType, string path, string fileName)
+        public Logger(LogType logType, string path, string fileName)
         {
             InitializeLog(logType);
             InitializePath(path, fileName);
             CheckLog();
         }
 
-        public void RestLogger(LogTypeEnum logType, string path, string fileName)
+        public void RestLogger(LogType logType, string path, string fileName)
         {
             InitializeLog(logType);
             InitializePath(path, fileName);
             CheckLog();
         }
 
-        public void InitializeLog(LogTypeEnum logType)
+        public void InitializeLog(LogType logType)
         {
             switch (logType)
             {
-                case LogTypeEnum.Json:
+                case LogType.Json:
                     Log = new JsonLog();
                     break;
-                case LogTypeEnum.Xml:
+                case LogType.Xml:
                     Log = new XmlLog();
                     break;
-                case LogTypeEnum.Txt:
+                case LogType.Txt:
                     Log = new TxtLog();
                     break;
                 default:

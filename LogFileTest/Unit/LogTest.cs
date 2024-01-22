@@ -15,7 +15,7 @@ namespace LogFileTest
         public void GivenLogJsonType_WhenCreateLogger_ThenReturnLog()
         {
             //Arrange
-            var json = new Logger(LogTypeEnum.Json, "D:\\", "test");
+            var json = new Logger(LogType.Json, "D:\\", "test");
 
             //Act
             var log = json.Log;
@@ -29,7 +29,7 @@ namespace LogFileTest
         public void GivebNotExistedLogType_WhenCreateLogger_ThenReturnNull()
         {
             //Assert
-            Assert.Throws<NullReferenceException>(() => new Logger(LogTypeEnum.Yml, "D:\\", "test"));
+            Assert.Throws<NullReferenceException>(() => new Logger(LogType.Yml, "D:\\", "test"));
         }
     }
 }

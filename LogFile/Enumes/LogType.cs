@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogFile
 {
-    public enum LogTypeEnum
+    public enum LogType
     {
         [Description("json")]
         Json,
